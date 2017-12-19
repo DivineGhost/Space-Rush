@@ -4,32 +4,32 @@ import java.awt.Graphics;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import java.util.Random;
 
 public class Game extends Canvas implements Runnable{
     // Constantes que correspondem às dimensões da tela
-    public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+    public static final int WIDTH = 1000, HEIGHT = WIDTH / 12 * 9;
+    public static long ticks = 0;
+    public static Status status;
     
     private Thread thread;
     private boolean running = false;
     
-    private Handler handler;
+    public static Handler handler;
     private Window window;
     private Player player;
     private HUD hud;
+    private Spawner spawner;
 
     
-    public Game(){        
+    public Game(){
+        status = Status.Game;
         handler = new Handler();
+        player = new Player(1000, 50, (HEIGHT / 2) - 50, Type.Player, handler);     
+        handler.addObject(player);
         hud = new HUD();
+        spawner = new Spawner(handler, hud);
         this.addKeyListener(new KeyInput(handler));
         window = new Window(WIDTH, HEIGHT, "Space Rush", this);
-        player = new Player((WIDTH / 2) - 50, (HEIGHT / 2) - 50, Type.Player, handler);
-        Random r = new Random();
-        EnemyRusher rusher1 = new EnemyRusher(WIDTH - 20, r.nextInt(HEIGHT - 20), Type.EnemyRusher);
-        
-        handler.addObject(player);
-        handler.addObject(rusher1);
     }
     
     public void run(){
@@ -74,7 +74,7 @@ public class Game extends Canvas implements Runnable{
     }
     
     public synchronized void start(){
-        // Inicializando a thread REVER
+        // Inicializando a thread
         thread = new Thread(this);
         thread.start();
         running = true;
@@ -92,6 +92,8 @@ public class Game extends Canvas implements Runnable{
     public void tick(){
         handler.tick();
         hud.tick();
+        spawner.tick();
+        this.ticks++;
     }
     
     public void render(){
@@ -125,5 +127,12 @@ public class Game extends Canvas implements Runnable{
         else{
             return value;
         }
+    }
+    
+    public boolean isGameOver(){
+        if(Player.HEALTH <= 0){
+            return true;
+        }
+        return false;
     }
 }

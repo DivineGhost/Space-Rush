@@ -1,15 +1,17 @@
-import java.awt.Graphics;
-import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import java.awt.Graphics;
+import java.util.Random;
 
-public class EnemyRusher extends GameObject{
-    public EnemyRusher(int x, int y, Type type){
-        super(10, x, y, type, 113, 127, 2, Allegiance.Enemy);
-        xSpeed = -2;
-        ySpeed = 0;
+public class Asteroid extends GameObject{    
+    public Asteroid(int x, int y){
+        super(40, x, y, Type.Asteroid, 168, 151, 5, Allegiance.Enemy);
         
-        this.hitbox = new Hitbox(x, y, width, height);
+        xSpeed = -2;
+        Random r = new Random();
+        ySpeed = r.nextInt(3);
+        
+        this.hitbox = new Hitbox(x, y, width, height);        
     }
     
     public void tick(){
@@ -22,11 +24,11 @@ public class EnemyRusher extends GameObject{
         y = Game.clamp(y, 0, Game.HEIGHT - this.height);
         if(y == Game.HEIGHT - this.height * 2 || y == 0){
             ySpeed = -ySpeed;
-        }        
+        } 
     }
     
     public void render(Graphics g){
-        ImageIcon sprite = new ImageIcon("sprites/rusher1.png");
+        ImageIcon sprite = new ImageIcon("sprites/asteroid1.png");
         JFrame frameSprite = new JFrame();
         sprite.paintIcon(frameSprite, g, x, y);
     }

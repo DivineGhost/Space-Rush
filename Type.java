@@ -5,5 +5,7 @@ public enum Type{
     EnemyRusher(), // Inimigo simples
     EnemyDestroyer(), // Inimigo médio
     EnemyColossus(), // Inimigo grande
+    EnemySpeeder(), // Inimigo rápido
     Asteroid(), // Asteroide
+    
 }

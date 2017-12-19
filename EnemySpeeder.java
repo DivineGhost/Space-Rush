@@ -3,11 +3,13 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-public class EnemyRusher extends GameObject{
-    public EnemyRusher(int x, int y, Type type){
-        super(10, x, y, type, 113, 127, 2, Allegiance.Enemy);
-        xSpeed = -2;
-        ySpeed = 0;
+public class EnemySpeeder extends GameObject{
+
+    public EnemySpeeder(int health, int x, int y, Type type){
+        super(health, x, y, type, 158, 154, 4, Allegiance.Enemy);
+        
+        xSpeed = -4;
+        ySpeed = -1;
         
         this.hitbox = new Hitbox(x, y, width, height);
     }
@@ -22,11 +24,11 @@ public class EnemyRusher extends GameObject{
         y = Game.clamp(y, 0, Game.HEIGHT - this.height);
         if(y == Game.HEIGHT - this.height * 2 || y == 0){
             ySpeed = -ySpeed;
-        }        
+        }  
     }
     
-    public void render(Graphics g){
-        ImageIcon sprite = new ImageIcon("sprites/rusher1.png");
+    public void render(Graphics g){        
+        ImageIcon sprite = new ImageIcon("sprites/speeder1.png");
         JFrame frameSprite = new JFrame();
         sprite.paintIcon(frameSprite, g, x, y);
     }
