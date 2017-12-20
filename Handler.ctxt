@@ -10,4 +10,6 @@ comment4.params=object
 comment4.target=void\ addObject(GameObject)
 comment5.params=object
 comment5.target=void\ removeObject(GameObject)
-numComments=6
+comment6.params=h1\ h2
+comment6.target=boolean\ checkCollision(Hitbox,\ Hitbox)
+numComments=7

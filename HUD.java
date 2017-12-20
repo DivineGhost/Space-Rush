@@ -10,9 +10,9 @@ public class HUD{
     public static int LEVEL = 0;
         
     public void tick(){
-        if(EnemyDestroyer.HEALTH < 0){
+        if(Game.status == Status.Game){
             SCORE++;
-            if(SCORE % 100 == 0){ LEVEL++; }            
+            if(SCORE % 300 == 0){ LEVEL++; }            
         }
     }
 

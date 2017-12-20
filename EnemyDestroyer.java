@@ -5,15 +5,13 @@ import javax.swing.JFrame;
 
 public class EnemyDestroyer extends GameObject{
     
-    private long shotCooldown = 1000000000;
+    private double shotCooldown = 2000000000;
     private long previousShotTime = 0;
-    public static int HEALTH = -1;
     
     public EnemyDestroyer(int x, int y, Type type){
         super(200, x, y, type, 330, 277, 2, Allegiance.Boss);
         xSpeed = -1;
         ySpeed = 0;
-        HEALTH = this.health;
         this.hitbox = new Hitbox(x, y, width, height);
     }
     
@@ -24,10 +22,9 @@ public class EnemyDestroyer extends GameObject{
         hitbox.x = x;
         hitbox.y = y;
         
-        HEALTH = this.health;
-        if(HEALTH <= 11){
+        if(this.health <= 0){
             Game.status = Status.Game;
-            HEALTH = health = 0;
+            HUD.LEVEL++;
         }
         
         if(this.x == Game.WIDTH - this.width - 10){
@@ -55,6 +52,6 @@ public class EnemyDestroyer extends GameObject{
     }
     
     public void shoot(){
-        Game.handler.addObject(new Projectile(20, this.x + 20, this.y + (this.height / 2) - 20,-5, 80, 40, Type.Projectile, Allegiance.Boss));
+        Game.handler.addObject(new Projectile(20, this.x + 20, this.y + (this.height / 2) - 20,-3, 100, 40, Type.Projectile, Allegiance.Boss));
     }
 }

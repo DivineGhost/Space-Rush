@@ -1,5 +1,6 @@
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.LinkedList;
 
 public class KeyInput extends KeyAdapter{
 
@@ -46,7 +47,11 @@ public class KeyInput extends KeyAdapter{
                         tempObject.shoot();                    
                         previousShotTime = System.nanoTime();
                     }
-                }                
+                }
+                if(key == KeyEvent.VK_P){
+                    Game.status = Status.Menu;
+                    Game.handler.objects = new LinkedList<GameObject>();
+                }
             }
         }
     }

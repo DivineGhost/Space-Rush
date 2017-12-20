@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=Hitbox
+comment1.params=x\ y\ width\ height
+comment1.target=Hitbox(int,\ int,\ int,\ int)
+numComments=2

@@ -22,7 +22,7 @@ public class Asteroid extends GameObject{
         hitbox.y = y;
         
         y = Game.clamp(y, 0, Game.HEIGHT - this.height);
-        if(y == Game.HEIGHT - this.height * 2 || y == 0){
+        if(y == Game.HEIGHT - this.height - 1 || y == 0){
             ySpeed = -ySpeed;
         } 
     }

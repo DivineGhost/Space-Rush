@@ -22,14 +22,6 @@ public abstract class GameObject{
         this.damage = damage;
         this.allegiance = allegiance;
     }
-    public GameObject(int x, int y, Type type, Dimension d){
-        this.x = x;
-        this.y = y;
-        this.type = type;
-        this.width = (int) d.getWidth();
-        this.height = (int) d.getHeight();
-        this.xSpeed = this.ySpeed = 0;
-    }
 
     public abstract void tick();
     public abstract void render(Graphics g);

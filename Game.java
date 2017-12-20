@@ -16,20 +16,25 @@ public class Game extends Canvas implements Runnable{
     
     public static Handler handler;
     private Window window;
-    private Player player;
+    public static Player player;
     private HUD hud;
     private Spawner spawner;
+    private Menu menu;
+    private Instructions inst;
 
     
     public Game(){
-        status = Status.Game;
-        handler = new Handler();
-        player = new Player(1000, 50, (HEIGHT / 2) - 50, Type.Player, handler);     
-        handler.addObject(player);
+        status = Status.Menu;
+        handler = new Handler();        
+        window = new Window(WIDTH, HEIGHT, "Space Rush", this);
         hud = new HUD();
+        player = new Player(1000, 50, (Game.HEIGHT / 2) - 50, Type.Player, handler);
+        menu = new Menu();
+        inst = new Instructions();
         spawner = new Spawner(handler, hud);
         this.addKeyListener(new KeyInput(handler));
-        window = new Window(WIDTH, HEIGHT, "Space Rush", this);
+        this.addMouseListener(menu);
+        this.addMouseListener(inst);
     }
     
     public void run(){
@@ -91,9 +96,11 @@ public class Game extends Canvas implements Runnable{
     
     public void tick(){
         handler.tick();
-        hud.tick();
-        spawner.tick();
-        this.ticks++;
+        if(this.status == Status.Game){
+            hud.tick();
+            spawner.tick();
+            this.ticks++;
+        }
     }
     
     public void render(){
@@ -105,13 +112,22 @@ public class Game extends Canvas implements Runnable{
         }
         
         Graphics g = bs.getDrawGraphics();
-        // Setando propriedades do fundo
-        ImageIcon background = new ImageIcon("sprites/background.png");
-        JLabel backgroundLabel = new JLabel();
-        background.paintIcon(backgroundLabel, g, 0, 0);
+        // Renderizando a tela segundo o status
+        if(this.status == Status.Game){            
+            // Setando propriedades do fundo
+            ImageIcon background = new ImageIcon("sprites/background.png");
+            JLabel backgroundLabel = new JLabel();
+            background.paintIcon(backgroundLabel, g, 0, 0);            
+            hud.render(g);
+        }        
+        else if(this.status == Status.Menu){
+            menu.render(g);
+        }
+        else if(this.status == Status.Instructions){
+            inst.render(g);
+        }
         // Chamando a função render() do handler, que chama iteradamente o render() dos outros objetos
         handler.render(g);
-        hud.render(g);
         // Mostrando o conteúdo da janela
         g.dispose();
         bs.show();
