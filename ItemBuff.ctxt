@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=ItemBuff
-comment1.params=health\ x\ y\ type\ width\ height\ damage\ allegiance
-comment1.target=ItemBuff(int,\ int,\ int,\ Type,\ int,\ int,\ int,\ Allegiance)
-comment2.params=
-comment2.target=void\ tick()
-comment3.params=g
-comment3.target=void\ render(java.awt.Graphics)
-numComments=4
