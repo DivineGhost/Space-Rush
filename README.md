@@ -6,3 +6,5 @@ Author: Pedro Rodrigues de Lima
 Instructions:
 W, A, S, D - Spaceship movement
 Spacebar - Fire spaceship projectile
+P - Pause
+ESC - Exit game
