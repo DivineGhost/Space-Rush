@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=EnemyRusher
-comment1.params=x\ y\ type
-comment1.target=EnemyRusher(int,\ int,\ Mechanics.Type)
-comment2.params=
-comment2.target=void\ tick()
-comment3.params=g
-comment3.target=void\ render(java.awt.Graphics)
-numComments=4

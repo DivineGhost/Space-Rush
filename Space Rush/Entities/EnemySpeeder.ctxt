@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=EnemySpeeder
-comment1.params=health\ x\ y\ type
-comment1.target=EnemySpeeder(int,\ int,\ int,\ Mechanics.Type)
-comment2.params=
-comment2.target=void\ tick()
-comment3.params=g
-comment3.target=void\ render(java.awt.Graphics)
-numComments=4
